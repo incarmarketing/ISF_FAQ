@@ -104,10 +104,17 @@
         
         /* --- 인쇄 전용 스타일 --- */
         @media print {
+            /* 스크롤 관련 스타일 인쇄 시 제거 */
+            .main-container {
+                max-height: none !important;
+                overflow-y: visible !important;
+            }
+            
             /* 기본 배경 및 텍스트 색상 초기화 */
             body {
                 background-color: #ffffff !important;
                 color: #000000 !important;
+                display: block !important; /* flex 제거 */
             }
 
             /* 웹 전용 UI 요소 숨기기 */
@@ -175,8 +182,11 @@
         }
     </style>
 </head>
+<!-- body 태그는 기존 스타일을 그대로 유지합니다 -->
 <body class="p-4 md:p-8 flex items-center justify-center min-h-screen">
-    <div class="max-w-4xl w-full bg-white rounded-xl shadow-lg p-4 md:p-10 border border-gray-200 relative main-container">
+    
+    <!-- ✅ 이 부분에 max-h-screen과 overflow-y-auto를 추가하여 스크롤 문제를 해결했습니다. -->
+    <div class="main-container max-w-4xl w-full bg-white rounded-xl shadow-lg p-4 md:p-10 border border-gray-200 relative max-h-screen overflow-y-auto">
         <div class="logo-container">
             <img src="https://raw.githubusercontent.com/incarmarketing/stock-compensation/main/logo.png" alt="회사 로고" class="company-logo">
             <img src="https://raw.githubusercontent.com/incarmarketing/stock-compensation/main/kosdaq.png" alt="코스닥 로고" class="kosdaq-logo">
